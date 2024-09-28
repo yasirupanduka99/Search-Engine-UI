@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="./result.css">
+</head>
+<body>
+    <div class="body-div">
+        <div class="result-container">
+            {% if no_results %}
+            <h1 class="no-results">No results found for "<span>{{ query }}</span>"<h1>
+            {% elif papers %}
+            <h1 class="found-result"><span>{{ num_results }}</span> Search Results for "<span>{{ query }}</span>"</h1>
+            <div class="card-div">
+                    {% for paper in papers %}
+                        <div class="card">
+                            <div class="card-top-details">
+                                <div class="card-title"><span class="index-no">01.</span> {{ paper['Title'] }}</div>
+                                <div class="card-id"><strong>arXiv ID:</strong> {{ paper['arXiv ID'] }}</div>
+                            </div>
+                            <div class="card-bottom-details">
+                                <div class="card-detail"><strong>Authors:</strong> {{ paper['Authors'] }}</div>
+                                <div class="card-detail"><strong>Subjects:</strong> {{ paper['Subjects'] }}</div>
+                                <div class="card-detail"><strong>Subject Tags:</strong> {{ paper['Subject_Tags'] }}</div>
+                                <div class="card-detail"><strong>Submitted Date:</strong> {{ paper['Submitted Date'] }}</div>
+                                <div class="card-detail"><strong>Abstract:</strong> {{ paper['Abstract'] }}</div>
+                                <div class="card-detail"><strong>PDF Link:</strong> <a href="{{ paper['PDF Link'] }}" target="_blank">{{ paper['PDF Link'] }}</a></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
